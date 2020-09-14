@@ -1,0 +1,26 @@
+@import "./animations.css";
+.navigation-list {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  visibility: visible;
+  animation: fadein 1s;
+  justify-content: center;
+}
+
+.navigation-list-item a {
+  text-decoration: none;
+  padding: 1em;
+  display: block;
+  font-size: 1em;
+}
+
+.navigation-list-item a:any-link {
+  color: white;
+}
+
+.navigation-list-item a:hover {
+  background-color: khaki;
+}

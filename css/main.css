@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
+:root {
+  --transparent-black: rgba(0, 0, 0, 0.91);
+}
+
+html {
+  overflow: hidden;
+  font-family: 'Roboto';
+}
+
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.parallax-layer-base {
+  transform: translateZ(0);
+}
+
+.parallax-layer-back {
+  transform: translateZ(-1px) scale(2.1);
+}
+
+nav {
+  grid-area: nav;
+  height: 3em;
+  overflow: hidden;
+  background-color: var(--transparent-black);
+}
+
+@media (prefers-reduced-motion) {
+  .background-image {
+    animation-name: none;
+  }
+}

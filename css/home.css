@@ -1,0 +1,88 @@
+body {
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.background-image {
+  height: 200vh;
+  background: url('../img/background.webp') center center no-repeat;
+  background-size: cover;
+  filter: blur(2px);
+}
+
+.snapping-container>* {
+  scroll-snap-align: start;
+}
+
+.main-header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  flex-direction: column;
+  color: white;
+  font-size: x-large;
+}
+
+.main-header h1 {
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1em auto 1em;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "nav nav nav" "left article right" "left footer right";
+}
+
+article {
+  justify-self: center;
+  max-width: 1000px;
+  padding: 1em;
+  color: rgb(33, 33, 33);
+  margin: 2em 0;
+  border-radius: 5px;
+  grid-area: article;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(50px);
+  max-height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+article picture {
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+article picture img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+@supports not (backdrop-filter: blur(50px)) {
+  article {
+    background-color: white;
+  }
+}
+
+aside {
+  background-color: lightcoral;
+  grid-area: aside;
+}
+
+.main-footer {
+  grid-area: footer;
+  background-color: yellow;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.profile-pic {}
