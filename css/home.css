@@ -7,7 +7,7 @@ body {
   height: 200vh;
   background: url('../img/background.webp') center center no-repeat;
   background-size: cover;
-  filter: blur(2px);
+  /* filter: blur(2px); */
 }
 
 .snapping-container>* {
