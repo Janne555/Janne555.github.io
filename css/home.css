@@ -5,7 +5,7 @@ body {
 
 .background-image {
   height: 200vh;
-  background: url('../img/background.webp') center center no-repeat;
+  background: url('../img/background.webp?ver=3') center center no-repeat;
   background-size: cover;
 }
 
@@ -52,20 +52,15 @@ article {
 }
 
 article picture {
-  display: flex;
-  justify-content: center;
-  border-radius: 100%;
-  overflow: hidden;
+  float: left;
+  width: 50%;
+  height: 50%;
+  margin-right: 1em;
 }
 
 article picture img {
-  max-width: 100px;
-  max-height: 100px;
-}
-
-aside {
-  background-color: lightcoral;
-  grid-area: aside;
+  width: 100%;
+  height: 100%;
 }
 
 .main-footer {
@@ -77,4 +72,24 @@ aside {
   display: none;
 }
 
-.profile-pic {}
+@media only screen and (max-width: 600px) {
+  .background-image {
+    background: url('../img/background-small.webp?ver=3') center center no-repeat;
+  }
+  article {
+    display: flex;
+    flex-direction: column;
+  }
+
+  article header {
+    text-align: center;
+    order: -1;
+  }
+
+  article picture {
+    align-self: center;
+    float: initial;
+    width: 70%;
+    margin-right: initial;
+  }
+}

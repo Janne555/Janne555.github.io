@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
 :root {
   --transparent-black: rgba(0, 0, 0, 0.91);
 }
@@ -36,10 +35,4 @@ nav {
   height: 3em;
   overflow: hidden;
   background-color: var(--transparent-black);
-}
-
-@media (prefers-reduced-motion) {
-  .background-image {
-    animation-name: none;
-  }
 }
