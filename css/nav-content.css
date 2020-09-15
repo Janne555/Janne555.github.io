@@ -1,4 +1,4 @@
-@import "./animations.css";
+@import "./animations.css?ver=2";
 .navigation-list {
   list-style-type: none;
   display: flex;
