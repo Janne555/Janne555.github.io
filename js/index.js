@@ -1,1 +1,1 @@
-import './components/nav-content.js?ver=2'
+import './components/nav-content.js?ver=3'
