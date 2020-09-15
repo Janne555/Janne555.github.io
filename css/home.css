@@ -9,12 +9,16 @@ body {
   background-size: cover;
 }
 
+.snapping-container {
+  height: 200vh;
+}
+
 .snapping-container>* {
   scroll-snap-align: start;
 }
 
 .main-header {
-  height: 100vh;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,11 +34,11 @@ body {
 }
 
 main {
-  height: 100vh;
+  height: 50%;
   display: grid;
   grid-template-columns: 1em auto 1em;
   grid-template-rows: auto 1fr;
-  grid-template-areas: "nav nav nav" "left article right" "left footer right";
+  grid-template-areas: "nav nav nav" "left article right";
 }
 
 article {
@@ -42,7 +46,7 @@ article {
   max-width: 1000px;
   padding: 1em;
   color: rgb(33, 33, 33);
-  margin: 2em 0;
+  margin: 1em 0;
   border-radius: 5px;
   grid-area: article;
   background-color: rgba(255, 255, 255, 0.95);
@@ -80,12 +84,10 @@ article picture img {
     display: flex;
     flex-direction: column;
   }
-
   article header {
     text-align: center;
     order: -1;
   }
-
   article picture {
     align-self: center;
     float: initial;
