@@ -20,24 +20,34 @@
   display: block;
   padding: 1em;
   font-size: 1em;
+  position: relative;
 }
 
 .navigation-list-item[data-active="true"]::before {
-  content: "<";
+  content: ">";
   color: white;
   margin-right: -0.9em;
+  font-size: 0.7em;
+  z-index: 1;
 }
 
 .navigation-list-item[data-active="true"]::after {
-  content: ">";
+  content: "<";
   color: white;
   margin-left: -0.9em;
+  font-size: 0.7em;
+  z-index: 1;
 }
 
 .navigation-list-item a:any-link {
   color: white;
 }
 
+.navigation-list-item a {
+  transition-property: background-color;
+  transition-duration: 0.3s;
+}
+
 .navigation-list-item a:hover {
-  background-color: khaki;
+  background-color: rgba(40, 40, 40, 0.91)
 }
