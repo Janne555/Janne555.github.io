@@ -10,11 +10,28 @@
   justify-content: center;
 }
 
+.navigation-list-item {
+  display: flex;
+  align-items: center;
+}
+
 .navigation-list-item a {
   text-decoration: none;
-  padding: 1em;
   display: block;
+  padding: 1em;
   font-size: 1em;
+}
+
+.navigation-list-item[data-active="true"]::before {
+  content: "<";
+  color: white;
+  margin-right: -0.9em;
+}
+
+.navigation-list-item[data-active="true"]::after {
+  content: ">";
+  color: white;
+  margin-left: -0.9em;
 }
 
 .navigation-list-item a:any-link {

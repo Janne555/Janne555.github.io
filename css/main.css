@@ -32,7 +32,6 @@ html {
 
 nav {
   grid-area: nav;
-  height: 3em;
   overflow: hidden;
   background-color: var(--transparent-black);
 }
