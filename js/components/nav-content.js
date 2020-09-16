@@ -1,4 +1,4 @@
-import { getTemplate } from '../utils.js'
+import { getTemplate } from '../utils.js?ver=5'
 
 class NavBar extends HTMLElement {
   async connectedCallback() {

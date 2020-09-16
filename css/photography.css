@@ -28,6 +28,40 @@ article {
   max-width: 1000px;
   overflow: hidden;
   padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 7fr 5fr 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 3em;
+  grid-template-areas: "side pic header side2" "side pic section side2" "side pic footer side2";
+}
+
+article:nth-of-type(even) {
+  grid-template-columns: 1fr 5fr 7fr 1fr;
+  grid-template-areas: "side header pic side2" "side section pic side2" "side footer pic side2";
+}
+
+picture-frame {
+  grid-area: pic;
+  justify-self: end;
+}
+
+header {
+  grid-area: header;
+  align-self: end;
+}
+
+section {
+  align-self: start;
+  justify-self: start;
+  grid-area: section;
+}
+
+footer {
+  grid-area: footer;
+}
+
+img {
+  max-width: 100%;
 }
 
 @media screen and (max-width: 600px) {
