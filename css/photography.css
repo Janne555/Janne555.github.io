@@ -29,7 +29,7 @@ article {
   overflow: hidden;
   padding: 1em;
   display: grid;
-  grid-template-columns: 1fr 7fr 5fr 1fr;
+  grid-template-columns: 1fr 7fr 4fr 1fr;
   grid-template-rows: auto auto auto;
   column-gap: 3em;
   grid-template-areas: "side pic header side2" "side pic section side2" "side pic footer side2";
@@ -40,9 +40,26 @@ article:nth-of-type(even) {
   grid-template-areas: "side header pic side2" "side section pic side2" "side footer pic side2";
 }
 
-picture-frame {
+article.horizontal {
+  column-gap: initial;
+  grid-template-areas: "side pic pic side2" "side header header side2" "side section section side2";
+}
+
+.frame {
   grid-area: pic;
   justify-self: end;
+}
+
+.horizontal .frame {
+  justify-self: center;
+}
+
+.horizontal h3 {
+  text-align: center;
+}
+
+.horizontal p {
+  columns: 2;
 }
 
 header {
@@ -64,7 +81,7 @@ img {
   max-width: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   body {
     height: calc(var(--vh, 1vh) * 100);
     display: grid;
@@ -89,17 +106,59 @@ img {
   article {
     max-width: initial;
     min-height: calc(100% - 2em);
+    max-height: 100%;
     scroll-snap-align: center;
     margin: 1em;
     box-shadow: 1px 2px 3px 0px black;
     background-color: rgba(255, 255, 255, 0.85);
     overflow: hidden;
     padding: initial;
+    display: initial;
   }
   article>* {
     margin: 1em;
   }
   main>footer {
     min-height: 1px;
+  }
+  .frame {
+    width: 60%;
+  }
+  img {
+    float: left;
+    margin-right: 1em;
+  }
+  h3 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  .horizontal p {
+    columns: initial;
+  }
+  .horizontal .frame {
+    width: unset;
+  }
+  .horizontal img {
+    margin-bottom: 1em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    margin: 0;
+    align-self: center;
+  }
+  section {
+    margin: 0;
+    text-align: center;
+  }
+  picture-frame {
+    float: initial;
   }
 }
