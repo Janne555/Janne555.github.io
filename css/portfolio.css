@@ -6,7 +6,7 @@
 main {
   display: grid;
   grid-auto-rows: auto 1fr;
-  grid-template-columns: repeat( auto-fit, minmax( clamp(33%, 350px, 100%), 1fr));
+  grid-template-columns: repeat( auto-fit, minmax( clamp(50%, 350px, 100%), 1fr));
 }
 
 nav {
@@ -14,10 +14,13 @@ nav {
 }
 
 article {
-  justify-self: center;
   max-width: 600px;
   margin: 1em;
   background-color: rgba(255, 255, 255, 0.85);
   padding: 1em;
   box-shadow: 1px 2px 3px 0px black;
+}
+
+article:nth-of-type(odd) {
+  justify-self: flex-end;
 }
