@@ -1,5 +1,6 @@
 :root {
   --transparent-black: rgba(20, 20, 20, 0.91);
+  --responsive-max-width: 600px;
 }
 
 html {
