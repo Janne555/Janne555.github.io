@@ -1,11 +1,21 @@
-nav {
-  position: sticky;
-  top:0;
-  right: 0;
-  left: 0;
-  z-index: 3;
+.background-image {
+  background: url('../img/background-2.webp?ver=4') center center no-repeat;
+  background-size: cover;
 }
 
 main {
-  height: 200vh;
+  display: grid;
+  grid-auto-rows: auto 1fr;
+  grid-template-columns: repeat( auto-fit, minmax( clamp(33%, 350px, 100%), 1fr));
+}
+
+nav {
+  grid-column: 1 / -1;
+}
+
+article {
+  justify-self: center;
+  max-width: 600px;
+  margin: 1em;
+  background-color: white;
 }

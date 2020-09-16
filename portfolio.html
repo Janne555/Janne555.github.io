@@ -1,45 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Janne Lavila - web dev</title>
+  <title>Janne Lavila - Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css?ver=4" />
   <link rel="stylesheet" href="css/main.css?ver=4" />
   <link rel="stylesheet" href="css/portfolio.css?ver=4" />
   <script type="module" src="js/index.js?ver=4"></script>
 </head>
 
-<body>
-  <nav>
-    <nav-content>
-      <div className="loading-bar"></div>
-    </nav-content>
-  </nav>
-  <div class="parallax">
-    <div class="parallax-layer parallax-layer-back">
-      <img src="img/pihlajanmarjat1920x1080.jpg?ver=4" />
-    </div>
-    <div class="parallax-layer parallax-layer-base">
-      <main>
-        <article>
-          <header>
-            <h2>article header</h2>
-          </header>
-          <section>
-          </section>
-          <footer>
-          </footer>
-        </article>
-        <aside>
-          I am aside
-        </aside>
-        <footer class="main-footer">
-          footer
-        </footer>
-      </main>
-    </div>
+<body class="parallax">
+  <div class="parallax-layer parallax-layer-back background-image">
   </div>
+  <div class="parallax-layer parallax-layer-base">
+    <main>
+      <nav>
+        <nav-content currentpage="portfolio">
+          <div class="loading-bar"></div>
+        </nav-content>
+      </nav>
+      <article>
+        <header>
+          <h3>Lorem ipsum dolor sit amet</h3>
+        </header>
+        <section>
+          <p>
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </section>
+        <footer>
 
+        </footer>
+      </article>
+      <article>
+        <header>
+          <h3>Lorem ipsum dolor sit amet</h3>
+        </header>
+        <section>
+          <p>
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </section>
+        <footer>
+
+        </footer>
+      </article>
+      <article>
+        <header>
+          <h3>Lorem ipsum dolor sit amet</h3>
+        </header>
+        <section>
+          <p>
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </section>
+        <footer>
+
+        </footer>
+      </article>
+    </main>
+  </div>
+  <script>
+    document.querySelector(".background-image").style["min-height"] = `${document.querySelector("main").clientHeight}px`
+  </script>
 </body>
 
 </html>

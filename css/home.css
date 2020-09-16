@@ -95,3 +95,10 @@ article picture img {
     margin-right: initial;
   }
 }
+
+
+nav {
+  grid-area: nav;
+  overflow: hidden;
+  background-color: var(--transparent-black);
+}
