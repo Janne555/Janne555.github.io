@@ -1,5 +1,5 @@
-import './components/nav-content.js?ver=6'
-import './components/picture-frame.js?ver=6'
+import './components/nav-content.js?ver=7'
+import './components/picture-frame.js?ver=7'
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);

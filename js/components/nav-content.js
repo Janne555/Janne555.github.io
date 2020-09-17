@@ -1,8 +1,8 @@
-import { getTemplate } from '../utils.js?ver=6'
+import { getTemplate } from '../utils.js?ver=7'
 
 class NavBar extends HTMLElement {
   async connectedCallback() {
-    const template = await getTemplate('../../templates/nav-content.html?ver=6')
+    const template = await getTemplate('../../templates/nav-content.html?ver=7')
     this.innerHTML = template.innerHTML
 
     const currentpage = this.getAttribute("currentpage")
