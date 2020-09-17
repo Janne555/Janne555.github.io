@@ -120,11 +120,11 @@ const Background: React.FC<{ src: string }> = ({ src }) => {
 
 const Article: React.FC<{ horizontal?: boolean }> = ({ children, horizontal }) => {
   return (
-    <>
+    <div className="article-wrapper">
       <article className={horizontal ? `horizontal` : `vertical`}>
         {children}
       </article>
-    </>
+    </div>
   )
 }
 
