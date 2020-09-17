@@ -1,0 +1,92 @@
+body {
+  height: 100vh;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: 1em auto 1em;
+  grid-template-rows: auto 1fr;
+  background: rgba(0,0,0,0) url('/img/background-2.webp') center/cover no-repeat;
+}
+
+nav {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  height: 3em;
+}
+
+.background {
+  display: none;
+}
+
+main {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    overflow-y: unset;
+    background: unset;
+  }
+
+  main {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    row-gap: 1em;
+    grid-auto-rows: 1fr auto;
+    justify-content: center;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-padding: 1em;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+  }
+
+  main::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .divider {
+    height: 1em;
+  }
+
+  article {
+    margin: 1em 0 0;
+    height: calc(100vh - 5em);
+    background-color: rgba(255,255,255,0.6);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    scroll-snap-align: start;
+  }
+
+  article > * {
+    margin: 1em;
+  }
+
+  header {
+    text-align: center;
+    order: -1;
+  }
+
+  picture {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    /* height: 100px; */
+  }
+
+  .background {
+    display: initial;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

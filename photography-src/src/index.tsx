@@ -1,6 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import './styles.css'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const BackgroundContext = createContext({ setBackgroundSrc: (src: string) => { } })
@@ -98,7 +97,7 @@ const App: React.FC<{}> = () => {
 }
 
 const Background: React.FC<{ src: string }> = ({ src }) => {
-  return (
+  return ReactDOM.createPortal(
     <AnimatePresence>
       <motion.div
         key={src}
@@ -114,15 +113,19 @@ const Background: React.FC<{ src: string }> = ({ src }) => {
         transition={{ duration: .5 }}
         className="background" style={{ backgroundImage: `url("${src}")` }}
       />
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.querySelector("#bg")
   )
 }
 
 const Article: React.FC<{ horizontal?: boolean }> = ({ children, horizontal }) => {
   return (
-    <article className={horizontal ? `horizontal` : `vertical`}>
-      {children}
-    </article>
+    <>
+      <article className={horizontal ? `horizontal` : `vertical`}>
+        {children}
+      </article>
+      <div className="divider"></div>
+    </>
   )
 }
 
@@ -152,18 +155,16 @@ const Picture: React.FC<{ src: string }> = ({ src }) => {
     }
   }, [])
   const observerRef = useRef(new IntersectionObserver(cb, { root: document.body, threshold: 1.0 }))
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLPictureElement>(null)
 
   useEffect(() => {
     observerRef.current.observe(ref.current)
   }, [])
 
   return (
-    <div ref={ref} className="frame">
-      <picture>
-        <img src={src} alt="foo" />
-      </picture>
-    </div>
+    <picture ref={ref}>
+      <img src={src} alt="foo" />
+    </picture>
   )
 }
 
