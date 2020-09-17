@@ -98,7 +98,10 @@ article {
   }
 
   article > * {
-    margin: 1em;
+    margin: 0 1em;
+  }
+  article header {
+    margin-top: 1em;
   }
 
   header {
@@ -106,7 +109,7 @@ article {
     order: -1;
   }
 
-  h3 {
+  h2, h1 {
     margin: 0;
   }
 

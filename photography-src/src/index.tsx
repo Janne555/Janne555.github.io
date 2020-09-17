@@ -44,7 +44,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/amanita-small.webp" alt="A fly amanita in stark sun ligth" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -60,7 +60,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/appletreeflower-small.webp" alt="A flowering branch of an apple tree with a wasp flying next to it" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -76,7 +76,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/snowapple-small.webp" alt="An apple tree covered in a snowe dream scape" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -92,7 +92,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/bumblebee-small.webp" alt="A bumble bee resting on a dandelion" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -108,7 +108,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/butterfly-small.webp" alt="A butterfly resting on a green plant" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -124,7 +124,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/moth-small.webp" alt="A moth looking over a field of grass" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -140,7 +140,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/velvetflower-small.webp" alt="A centered image of a velvety flower" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -156,7 +156,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/withered-small.webp" alt="A withered flower in black and white" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -172,7 +172,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/moss-small.webp" alt="A mossy stone with a pine cone" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
@@ -188,7 +188,7 @@ const App: React.FC<{}> = () => {
       <Article>
         <Picture src="/img/boletus-small.webp" alt="A mushroom hidden in grass" />
         <Header>
-          <h3>Lorem ipsum dolor sit amet</h3>
+          <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
         <Section>
           <p>
