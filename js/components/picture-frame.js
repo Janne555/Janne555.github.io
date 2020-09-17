@@ -4,10 +4,14 @@ class PictureFrame extends HTMLElement {
     const src = this.getAttribute("src")
     const observer = new IntersectionObserver(event => {
       if (event.some(entry => entry.isIntersecting)) {
-        this.classList.toggle("foo")
-        document.querySelector("#dynamic-style").innerHTML = `body { background: url(${src}); background-size: cover;}`
-      } else {
-        this.classList.toggle("foo")
+        document.querySelector("#dynamic-style").innerHTML = `
+        @media screen and (max-width: 600px) {
+          body {
+            background: url(${src});
+            background-size: cover;
+          }
+        }
+        `
       }
     }, {
       root: document.root,
