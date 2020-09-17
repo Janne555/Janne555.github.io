@@ -1,5 +1,5 @@
 body {
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow-y: scroll;
   display: grid;
   grid-template-columns: 1em auto 1em;
@@ -83,7 +83,7 @@ article {
 
   article {
     margin: 1em 0 0;
-    height: calc(100vh - 5em);
+    height: calc(var(--vh, 1vh) * 100 - 5em);
     display: grid;
     grid-template-rows: auto 1fr auto;
     scroll-snap-align: start;
