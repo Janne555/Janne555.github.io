@@ -6,7 +6,7 @@ body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   grid-template-rows: auto 1fr;
-  background: url('/img/background-2.webp?ver=5') center center no-repeat;
+  background: url('/img/background-2.webp?ver=6') center center no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -86,7 +86,7 @@ img {
     height: calc(var(--vh, 1vh) * 100);
     display: grid;
     grid-template-rows: auto 1fr;
-    background: url('/img/background-2.webp?ver=5') center center no-repeat;
+    background: url('/img/background-2.webp?ver=6') center center no-repeat;
     background-size: cover;
   }
   main {
