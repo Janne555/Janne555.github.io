@@ -20,6 +20,36 @@ nav {
 main {
   grid-column: 2;
   grid-row: 3;
+  display: grid;
+  column-gap: 1em;
+  row-gap: 3em;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        clamp(25% - 1em, 450px, 100%),
+        1fr
+      )
+    );
+}
+
+picture {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  align-self: center;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 450px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.6);
+  padding: 1em;
 }
 
 @media screen and (max-width: 800px) {
@@ -31,8 +61,9 @@ main {
   main {
     height: 100%;
     width: 100%;
-    display: grid;
+    column-gap: unset;
     row-gap: 1em;
+    grid-template-columns: unset;
     grid-auto-rows: 1fr auto;
     justify-content: center;
     overflow: hidden;
@@ -53,10 +84,10 @@ main {
   article {
     margin: 1em 0 0;
     height: calc(100vh - 5em);
-    background-color: rgba(255,255,255,0.6);
     display: grid;
     grid-template-rows: auto 1fr auto;
     scroll-snap-align: start;
+    padding: unset;
   }
 
   article > * {
@@ -71,11 +102,13 @@ main {
   picture {
     height: 100%;
     overflow: hidden;
+    display: unset;
+    flex-direction: unset;
   }
 
   img {
     width: 100%;
-    /* height: 100px; */
+    align-self: unset;
   }
 
   .background {

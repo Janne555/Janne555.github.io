@@ -124,7 +124,6 @@ const Article: React.FC<{ horizontal?: boolean }> = ({ children, horizontal }) =
       <article className={horizontal ? `horizontal` : `vertical`}>
         {children}
       </article>
-      <div className="divider"></div>
     </>
   )
 }
