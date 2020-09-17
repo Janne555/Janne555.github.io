@@ -48,9 +48,10 @@ article {
   justify-content: center;
   max-width: 450px;
   overflow: hidden;
-  background-color: rgba(255,255,255,0.6);
+  background-color: rgba(255,255,255,0.9);
   padding: 1em;
 }
+
 
 @media screen and (max-width: 800px) {
   body {
@@ -131,6 +132,7 @@ article {
     right: 0;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
   }
   footer {
     height: 1px;
