@@ -5,7 +5,7 @@ body {
 
 .background-image {
   height: 200vh;
-  background: url('../img/background.webp?ver=7') center center no-repeat;
+  background: url('../img/background.webp?ver=8') center center no-repeat;
   background-size: cover;
 }
 
@@ -74,7 +74,7 @@ article picture img {
 
 @media only screen and (max-width: 600px) {
   .background-image {
-    background: url('../img/background-small.webp?ver=7') center center no-repeat;
+    background: url('../img/background-small.webp?ver=8') center center no-repeat;
   }
   article {
     display: flex;
