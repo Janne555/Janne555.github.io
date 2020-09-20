@@ -1,9 +1,14 @@
-import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
+import Background from './Background'
+import Article from './Article'
+import Header from './Header'
+import Section from './Section'
+import Picture from './Picture'
+import Footer from './Footer'
 
-const BackgroundContext = createContext({ setBackgroundSrc: (src: string) => { } })
-
+export const BackgroundContext = createContext({ setBackgroundSrc: (src: string) => { } })
 
 const App: React.FC<{}> = () => {
   const [bgSrc, setBgSrc] = useState('/img/boletus-small.webp')
@@ -28,13 +33,7 @@ const App: React.FC<{}> = () => {
             are lightly edited (sharpening and color correction).
           </p>
           <p>
-            ps. some of these pictures are also on my flickr
-          </p>
-          <p>
-            pps. please don't steal my photos 😊
-          </p>
-          <p>
-            ppps. descriptions are on my todo list but enjoy the lorem ipsum for now 😅
+            ps. please don't steal my photos 😊
           </p>
         </Section>
         <Footer>
@@ -42,7 +41,7 @@ const App: React.FC<{}> = () => {
         </Footer>
       </Article>
       <Article>
-        <Picture src="/img/amanita-small.webp" alt="A fly amanita in stark sun ligth" />
+        <Picture src="/img/amanita-small.webp" alt="A fly amanita in stark sun light" />
         <Header>
           <h2>Lorem ipsum dolor sit amet</h2>
         </Header>
@@ -203,77 +202,6 @@ const App: React.FC<{}> = () => {
       </Article>
       <Footer></Footer>
     </BackgroundContext.Provider>
-  )
-}
-
-const Background: React.FC<{ src: string }> = ({ src }) => {
-  return ReactDOM.createPortal(
-    <AnimatePresence>
-      <motion.div
-        key={src}
-        initial={{
-          opacity: 0
-        }}
-        animate={{
-          opacity: 1
-        }}
-        exit={{
-          opacity: 0
-        }}
-        transition={{ duration: .5 }}
-        className="background" style={{ backgroundImage: `url("${src}")` }}
-      />
-    </AnimatePresence>,
-    document.querySelector("#bg")
-  )
-}
-
-const Article: React.FC<{ horizontal?: boolean }> = ({ children, horizontal }) => {
-  return (
-    <div className="article-wrapper">
-      <article className={horizontal ? `horizontal` : `vertical`}>
-        {children}
-      </article>
-    </div>
-  )
-}
-
-const Header: React.FC<{}> = ({ children }) => {
-  return (
-    <header>{children}</header>
-  )
-}
-
-const Section: React.FC<{}> = ({ children }) => {
-  return (
-    <section>{children}</section>
-  )
-}
-
-const Footer: React.FC<{}> = ({ children }) => {
-  return (
-    <footer>{children}</footer>
-  )
-}
-
-const Picture: React.FC<{ src: string, alt: string }> = ({ src, alt }) => {
-  const { setBackgroundSrc } = useContext(BackgroundContext)
-  const cb: IntersectionObserverCallback = useCallback(entries => {
-    if (entries.some(entry => entry.isIntersecting)) {
-      setBackgroundSrc(src)
-    }
-  }, [])
-  const observerRef = useRef(new IntersectionObserver(cb, { root: document.body, threshold: 1.0 }))
-  const ref = useRef<HTMLPictureElement>(null)
-
-  useEffect(() => {
-    observerRef.current.observe(ref.current)
-  }, [])
-
-  return (
-    <picture ref={ref}>
-      <img src={src} alt={alt} />
-    </picture>
   )
 }
 
