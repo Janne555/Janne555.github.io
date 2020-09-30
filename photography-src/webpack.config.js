@@ -3,17 +3,27 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  entry: './src/index.tsx',
+  entry: {
+    photography: './src/index.tsx',
+    foo: './src/bar.tsx'
+  },
   output: {
     path: path.resolve(__dirname, '../photography'),
-    filename: 'main.[contenthash].js'
+    filename: '[name].[contenthash].js'
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Janne Lavila - Software Engineer',
       filename: './index.html',
-      template: 'template.html'
+      template: 'photography.html',
+      chunks: ['photography']
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Janne Lavila - Software Engineer',
+      filename: './foo.html',
+      template: 'foo.html',
+      chunks: ['foo']
     }),
   ],
   module: {
