@@ -1,10 +1,8 @@
 body {
   height: calc(var(--vh, 1vh) * 100);
-  overflow-y: scroll;
   display: grid;
   grid-template-columns: 1em auto 1em;
   grid-template-rows: auto 1fr;
-  background: rgba(0,0,0,0) url('/img/background-2.webp') center/cover no-repeat;
 }
 
 nav {
@@ -18,19 +16,19 @@ nav {
 }
 
 main {
-  grid-column: 2;
-  grid-row: 3;
+  grid-area: 3 / 2;
   display: grid;
   column-gap: 1em;
-  row-gap: 3em;
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(
-        clamp(25% - 1em, 450px, 100%),
-        1fr
-      )
-    );
+  height: 100%;
+  width: 100%;
+  row-gap: 1em;
+  grid-auto-rows: 1fr auto;
+  justify-content: center;
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-padding: 1em;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
 }
 
 picture {
@@ -39,106 +37,111 @@ picture {
 }
 
 img {
-  align-self: center;
   object-fit: cover;
+  width: 100%;
 }
 
 article {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   max-width: 450px;
   overflow: hidden;
-  background-color: rgba(255,255,255,0.9);
-  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+  max-height: 100%;
+  align-self: center;
+  margin: 1em 0 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  scroll-snap-align: center;
 }
 
+article>* {
+  margin: 0 1em;
+}
 
-@media screen and (max-width: 800px) {
+main::-webkit-scrollbar {
+  display: none;
+}
+
+.divider {
+  height: 1em;
+}
+
+.article-wrapper {
+  display: grid;
+  height: calc(var(--vh, 1vh) * 100 - 5em);
+}
+
+article header {
+  margin-top: 1em;
+}
+
+header {
+  text-align: center;
+  order: -1;
+}
+
+h2, h1 {
+  margin: 0;
+}
+
+picture {
+  height: 100%;
+  overflow: hidden;
+  display: unset;
+  flex-direction: unset;
+}
+
+.background {
+  display: initial;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+footer {
+  height: 1px;
+}
+
+@media screen and (min-width: 800px) {
   body {
-    overflow-y: unset;
-    background: unset;
+    grid-template-columns: 100vw;
   }
-
+  nav {
+    grid-area: 1 / 1;
+  }
   main {
     height: 100%;
-    width: 100%;
-    column-gap: unset;
-    row-gap: 1em;
     grid-template-columns: unset;
-    grid-auto-rows: 1fr auto;
-    justify-content: center;
-    overflow: hidden;
-    overflow-y: scroll;
-    scroll-padding: 1em;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none;
+    grid-area: 2 / 1;
+    transform: rotate(-90deg) translateY(-100%);
+    transform-origin: right top;
+    justify-content: initial;
+    grid-auto-rows: 100vw;
+    align-items: center;
+    justify-items: center;
+    column-gap: unset;
   }
-
-  main::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .divider {
-    height: 1em;
-  }
-  
   .article-wrapper {
-    display: grid;
-    height: calc(var(--vh, 1vh) * 100 - 5em);
-  }
-
-  article {
-    max-height: 100%;
-    align-self: center;
-    margin: 1em 0 0;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    scroll-snap-align: center;
-    padding: unset;
-  }
-
-  article > * {
-    margin: 0 1em;
-  }
-  article header {
-    margin-top: 1em;
-  }
-
-  header {
-    text-align: center;
-    order: -1;
-  }
-
-  h2, h1 {
-    margin: 0;
-  }
-
-  picture {
     height: 100%;
-    overflow: hidden;
-    display: unset;
-    flex-direction: unset;
+    align-items: center;
+    justify-items: center;
+    grid-template-rows: auto 1fr auto;
   }
-
+  main>div {
+    transform: rotate(90deg);
+  }
   img {
-    width: 100%;
+    /* max-width: 100px; */
+  }
+  article {
+    grid-area: 2 / 1;
+    max-height: unset;
     align-self: unset;
-  }
-
-  .background {
-    display: initial;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-  footer {
-    height: 1px;
   }
 }
