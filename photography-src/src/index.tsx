@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { AnimatePresence } from 'framer-motion'
 import Background from './Background'
@@ -16,11 +16,7 @@ type Article = {
   content: React.ReactNode
   footer: React.ReactNode
   picture?: {
-    src: {
-      small: string
-      medium: string
-      large: string
-    }
+    src: string
     alt: string
   }
 }
@@ -60,11 +56,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A fly amanita in stark sun light",
-      src: {
-        small: "/img/foo-small.webp",
-        medium: "/img/foo-medium.webp",
-        large: "/img/foo-large.webp"
-      }
+      src: "foo"
     }
   },
   {
@@ -79,11 +71,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A fly amanita in stark sun light",
-      src: {
-        small: "/img/amanita-small.webp",
-        medium: "/img/amanita-medium.webp",
-        large: "/img/amanita-large.webp"
-      }
+      src: "amanita"
     }
   },
   {
@@ -98,11 +86,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A flowering branch of an apple tree with a wasp flying next to it",
-      src: {
-        small: "/img/appletreeflower-small.webp",
-        medium: "/img/appletreeflower-medium.webp",
-        large: "/img/appletreeflower-large.webp"
-      }
+      src: "appletreeflower"
     }
   },
   {
@@ -117,11 +101,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "An apple tree covered in a snowe dream scape",
-      src: {
-        small: "/img/snowapple-small.webp",
-        medium: "/img/snowapple-medium.webp",
-        large: "/img/snowapple-large.webp"
-      }
+      src: "snowapple"
     }
   },
   {
@@ -136,11 +116,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A bumble bee resting on a dandelion",
-      src: {
-        small: "/img/bumblebee-small.webp",
-        medium: "/img/bumblebee-medium.webp",
-        large: "/img/bumblebee-large.webp"
-      }
+      src: "bumblebee"
     }
   },
   {
@@ -155,11 +131,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A butterfly resting on a green plant",
-      src: {
-        small: "/img/butterfly-small.webp",
-        medium: "/img/butterfly-medium.webp",
-        large: "/img/butterfly-large.webp"
-      }
+      src: "butterfly"
     }
   },
   {
@@ -174,11 +146,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A moth looking over a field of grass",
-      src: {
-        small: "/img/moth-small.webp",
-        medium: "/img/moth-medium.webp",
-        large: "/img/moth-large.webp"
-      }
+      src: "moth"
     }
   },
   {
@@ -193,11 +161,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A centered image of a velvety flower",
-      src: {
-        small: "/img/velvetflower-small.webp",
-        medium: "/img/velvetflower-medium.webp",
-        large: "/img/velvetflower-large.webp"
-      }
+      src: "velvetflower"
     }
   },
   {
@@ -212,30 +176,7 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A withered flower in black and white",
-      src: {
-        small: "/img/withered-small.webp",
-        medium: "/img/withered-medium.webp",
-        large: "/img/withered-large.webp"
-      }
-    }
-  },
-  {
-    header: <h2>Lorem ipsum dolor sit amet</h2>,
-    content: (
-      <p>
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-        ea commodo consequat.
-      </p>
-    ),
-    footer: "",
-    picture: {
-      alt: "A mossy stone with a pine cone",
-      src: {
-        small: "/img/moss-small.webp",
-        medium: "/img/moss-medium.webp",
-        large: "/img/moss-large.webp"
-      }
+      src: "withered"
     }
   },
   {
@@ -250,19 +191,15 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A mushroom hidden in grass",
-      src: {
-        small: "/img/boletus-small.webp",
-        medium: "/img/boletus-medium.webp",
-        large: "/img/boletus-large.webp"
-      }
+      src: "boletus"
     }
   }
 ]
 
-export const BackgroundContext = createContext<{ setBackgroundSrc: (src: Record<'small' | 'large' | 'medium', string>) => void }>({} as any)
+export const BackgroundContext = createContext<{ setBackgroundSrc: (src: string) => void }>({} as any)
 
 const App: React.FC<{}> = () => {
-  const [bgSrc, setBackgroundSrc] = React.useState<Record<'small' | 'large' | 'medium', string>>({ small: '/img/boletus-small.webp', medium: '/img/boletus-small.webp', large: '/img/boletus-small.webp' })
+  const [bgSrc, setBackgroundSrc] = React.useState('boletus')
   const articleRefs = React.useRef(articles.map(() => React.createRef<HTMLDivElement>()))
   const [articleInViewIndex, setArticleInViewIndex] = React.useState(0)
   const cb: IntersectionObserverCallback = React.useCallback(entries => {

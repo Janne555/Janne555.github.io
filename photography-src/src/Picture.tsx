@@ -1,7 +1,9 @@
 import React, { useCallback, useContext, useEffect, useRef } from 'react'
 import { BackgroundContext } from './index'
 
-const Picture: React.FC<{ src: Record<'small' | 'large' | 'medium', string>, alt: string }> = ({ src, alt }) => {
+const sizes = [640, 768, 1024, 1366, 1600, 1920]
+
+const Picture: React.FC<{ src: string, alt: string }> = ({ src, alt }) => {
   const { setBackgroundSrc } = useContext(BackgroundContext)
   const cb: IntersectionObserverCallback = useCallback(entries => {
     if (entries.some(entry => entry.isIntersecting)) {
@@ -17,9 +19,10 @@ const Picture: React.FC<{ src: Record<'small' | 'large' | 'medium', string>, alt
 
   return (
     <picture ref={ref}>
-      <source srcSet={src.large.replace("large", "small")} media="(min-width: 1000px)" />
-      <source srcSet={src.medium.replace("medium", "small")} media="(min-width: 500px)" />
-      <img src={src.small} alt={alt} />
+      {
+        sizes.map(size => <source key={size} srcSet={`/img/${size}-${src}.webp`} media={`(max-width: ${size}px)`} />)
+      }
+      <img src={`/img/640-${src}.webp`} alt={alt} />
     </picture>
   )
 }

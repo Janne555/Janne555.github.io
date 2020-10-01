@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useWindowSize } from './utils'
 
-const sizes = ["small", "medium", "large"]
+const sizes = [640, 768, 1024, 1366, 1600, 1920]
 
-const Background: React.FC<{ src: Record<'small' | 'large' | 'medium', string> }> = ({ src }) => {
-  const size = useWindowSize()
+const closest = (width: number) => sizes.reduce((curr, prev) => Math.abs(curr - width) < Math.abs(prev - width) ? curr : prev)
+
+const Background: React.FC<{ src: string }> = ({ src }) => {
+  const { width } = useWindowSize()
 
   return ReactDOM.createPortal(
     <AnimatePresence>
       <motion.div
-        key={src.small}
+        key={src}
         initial={{
           opacity: 0
         }}
@@ -24,12 +26,7 @@ const Background: React.FC<{ src: Record<'small' | 'large' | 'medium', string> }
         transition={{ duration: .5 }}
         className="background"
         style={{
-          backgroundImage: `url(${size.width > 500
-            ? size.width > 1000
-              ? src.large.replace("large", "small")
-              : src.medium.replace("medium", "small")
-            : src.small
-            })`
+          backgroundImage: `url(/img/${closest(width)}-${src}.webp)`
         }}
       />
     </AnimatePresence>,

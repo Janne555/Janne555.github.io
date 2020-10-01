@@ -127,7 +127,6 @@ footer {
     display: initial;
     align-self: center;
     background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 13%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 70%);
     border-radius: 100%;
   }  
 
@@ -140,6 +139,7 @@ footer {
   }
 
   picture {
+    max-width: 100%;
     align-self: center;
     justify-self: center;
   }
