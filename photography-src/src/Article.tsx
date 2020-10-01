@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Article: React.FC<{ horizontal?: boolean }> = ({ children, horizontal }) => {
+const Article = React.forwardRef<HTMLDivElement, { horizontal?: boolean, children: React.ReactNode }>(({ children, horizontal }, ref) => {
   return (
-    <div className="article-wrapper">
+    <div ref={ref} className="article-wrapper">
       <article className={horizontal ? `horizontal` : `vertical`}>
         {children}
       </article>
     </div>
   )
-}
+})
 
 export default Article
