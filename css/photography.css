@@ -126,15 +126,17 @@ footer {
     position: absolute;
     display: initial;
     align-self: center;
-  }
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 13%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 70%);
+    border-radius: 100%;
+  }  
+
   .button-left {
-    justify-self: flex-end;
+    left: 1em;
   }
+
   .button-right {
-    right: 0;
-    grid-column: 3;
-    justify-self: flex-start;
-    align-self: center;
+    right: 1em;
   }
 
   picture {

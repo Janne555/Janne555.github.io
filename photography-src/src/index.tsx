@@ -7,6 +7,9 @@ import Header from './Header'
 import Section from './Section'
 import Picture from './Picture'
 import Footer from './Footer'
+import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
+import ArrowRight from '@material-ui/icons/KeyboardArrowRight'
+import IconButton from '@material-ui/core/IconButton'
 
 type Article = {
   header: React.ReactNode
@@ -257,13 +260,23 @@ const App: React.FC<{}> = () => {
 
 const LeftButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
-    <button onClick={onClick} className="button-left">left</button>
+    ReactDOM.createPortal(
+      <IconButton onClick={onClick} aria-label="previous image">
+        <ArrowLeft />
+      </IconButton>,
+      document.getElementById("button-left")
+    )
   )
 }
 
 const RightButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
-    <button onClick={onClick} className="button-right" >right</button>
+    ReactDOM.createPortal(
+      <IconButton onClick={onClick} aria-label="next image">
+        <ArrowRight />
+      </IconButton>,
+      document.getElementById("button-right")
+    )
   )
 }
 
