@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useEffect, useRef } from 'react'
 import { BackgroundContext } from './index'
 
-const Picture: React.FC<{ src: string, alt: string }> = ({ src, alt }) => {
+const Picture: React.FC<{ src: Record<'small' | 'large' | 'medium', string>, alt: string }> = ({ src, alt }) => {
   const { setBackgroundSrc } = useContext(BackgroundContext)
   const cb: IntersectionObserverCallback = useCallback(entries => {
     if (entries.some(entry => entry.isIntersecting)) {
-      window.requestAnimationFrame(() => setBackgroundSrc(src))
+      window.requestAnimationFrame(() => setBackgroundSrc(src.small))
     }
   }, [])
   const observerRef = useRef(new IntersectionObserver(cb, { root: document.body, threshold: 1.0 }))
@@ -17,7 +17,9 @@ const Picture: React.FC<{ src: string, alt: string }> = ({ src, alt }) => {
 
   return (
     <picture ref={ref}>
-      <img src={src} alt={alt} />
+      <source srcSet={src.large} media="(min-width: 1000px)" />
+      <source srcSet={src.medium} media="(min-width: 500px)" />
+      <img src={src.small} alt={alt} />
     </picture>
   )
 }

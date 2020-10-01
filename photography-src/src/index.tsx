@@ -16,7 +16,11 @@ type Article = {
   content: React.ReactNode
   footer: React.ReactNode
   picture?: {
-    src: string
+    src: {
+      small: string
+      medium: string
+      large: string
+    }
     alt: string
   }
 }
@@ -56,7 +60,30 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A fly amanita in stark sun light",
-      src: "/img/amanita-small.webp"
+      src: {
+        small: "/img/foo-small.webp",
+        medium: "/img/foo-medium.webp",
+        large: "/img/foo-large.webp"
+      }
+    }
+  },
+  {
+    header: <h2>Lorem ipsum dolor sit amet</h2>,
+    content: (
+      <p>
+        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+        ea commodo consequat.
+      </p>
+    ),
+    footer: "",
+    picture: {
+      alt: "A fly amanita in stark sun light",
+      src: {
+        small: "/img/amanita-small.webp",
+        medium: "/img/amanita-medium.webp",
+        large: "/img/amanita-large.webp"
+      }
     }
   },
   {
@@ -71,7 +98,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A flowering branch of an apple tree with a wasp flying next to it",
-      src: "/img/appletreeflower-small.webp"
+      src: {
+        small: "/img/appletreeflower-small.webp",
+        medium: "/img/appletreeflower-medium.webp",
+        large: "/img/appletreeflower-large.webp"
+      }
     }
   },
   {
@@ -86,7 +117,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "An apple tree covered in a snowe dream scape",
-      src: "/img/snowapple-small.webp"
+      src: {
+        small: "/img/snowapple-small.webp",
+        medium: "/img/snowapple-medium.webp",
+        large: "/img/snowapple-large.webp"
+      }
     }
   },
   {
@@ -101,7 +136,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A bumble bee resting on a dandelion",
-      src: "/img/bumblebee-small.webp"
+      src: {
+        small: "/img/bumblebee-small.webp",
+        medium: "/img/bumblebee-medium.webp",
+        large: "/img/bumblebee-large.webp"
+      }
     }
   },
   {
@@ -116,7 +155,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A butterfly resting on a green plant",
-      src: "/img/butterfly-small.webp"
+      src: {
+        small: "/img/butterfly-small.webp",
+        medium: "/img/butterfly-medium.webp",
+        large: "/img/butterfly-large.webp"
+      }
     }
   },
   {
@@ -131,7 +174,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A moth looking over a field of grass",
-      src: "/img/moth-small.webp"
+      src: {
+        small: "/img/moth-small.webp",
+        medium: "/img/moth-medium.webp",
+        large: "/img/moth-large.webp"
+      }
     }
   },
   {
@@ -146,7 +193,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A centered image of a velvety flower",
-      src: "/img/velvetflower-small.webp"
+      src: {
+        small: "/img/velvetflower-small.webp",
+        medium: "/img/velvetflower-medium.webp",
+        large: "/img/velvetflower-large.webp"
+      }
     }
   },
   {
@@ -161,7 +212,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A withered flower in black and white",
-      src: "/img/withered-small.webp"
+      src: {
+        small: "/img/withered-small.webp",
+        medium: "/img/withered-medium.webp",
+        large: "/img/withered-large.webp"
+      }
     }
   },
   {
@@ -176,7 +231,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A mossy stone with a pine cone",
-      src: "/img/moss-small.webp"
+      src: {
+        small: "/img/moss-small.webp",
+        medium: "/img/moss-medium.webp",
+        large: "/img/moss-large.webp"
+      }
     }
   },
   {
@@ -191,7 +250,11 @@ const articles: Article[] = [
     footer: "",
     picture: {
       alt: "A mushroom hidden in grass",
-      src: "/img/boletus-small.webp"
+      src: {
+        small: "/img/boletus-small.webp",
+        medium: "/img/boletus-medium.webp",
+        large: "/img/boletus-large.webp"
+      }
     }
   }
 ]

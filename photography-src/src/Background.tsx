@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+
+const sizes = ["small", "medium", "large"]
 
 const Background: React.FC<{ src: string }> = ({ src }) => {
   return ReactDOM.createPortal(
