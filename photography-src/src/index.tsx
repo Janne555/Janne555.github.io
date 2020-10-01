@@ -259,10 +259,10 @@ const articles: Article[] = [
   }
 ]
 
-export const BackgroundContext = createContext<{ setBackgroundSrc: (src: string) => void }>({} as any)
+export const BackgroundContext = createContext<{ setBackgroundSrc: (src: Record<'small' | 'large' | 'medium', string>) => void }>({} as any)
 
 const App: React.FC<{}> = () => {
-  const [bgSrc, setBackgroundSrc] = React.useState('/img/boletus-small.webp')
+  const [bgSrc, setBackgroundSrc] = React.useState<Record<'small' | 'large' | 'medium', string>>({ small: '/img/boletus-small.webp', medium: '/img/boletus-small.webp', large: '/img/boletus-small.webp' })
   const articleRefs = React.useRef(articles.map(() => React.createRef<HTMLDivElement>()))
   const [articleInViewIndex, setArticleInViewIndex] = React.useState(0)
   const cb: IntersectionObserverCallback = React.useCallback(entries => {
