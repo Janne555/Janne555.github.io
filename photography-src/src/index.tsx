@@ -7,9 +7,6 @@ import Header from './Header'
 import Section from './Section'
 import Picture from './Picture'
 import Footer from './Footer'
-import ArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
-import ArrowRight from '@material-ui/icons/KeyboardArrowRight'
-import IconButton from '@material-ui/core/IconButton'
 
 type Article = {
   header: React.ReactNode
@@ -43,21 +40,6 @@ const articles: Article[] = [
       </>
     ),
     footer: "",
-  },
-  {
-    header: <h2>Lorem ipsum dolor sit amet</h2>,
-    content: (
-      <p>
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-        ea commodo consequat.
-      </p>
-    ),
-    footer: "",
-    picture: {
-      alt: "A fly amanita in stark sun light",
-      src: "foo"
-    }
   },
   {
     header: <h2>Lorem ipsum dolor sit amet</h2>,
@@ -261,9 +243,7 @@ const App: React.FC<{}> = () => {
 const LeftButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     ReactDOM.createPortal(
-      <IconButton onClick={onClick} aria-label="previous image">
-        <ArrowLeft />
-      </IconButton>,
+      <button onClick={onClick}></button>,
       document.getElementById("button-left")
     )
   )
@@ -272,9 +252,7 @@ const LeftButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 const RightButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     ReactDOM.createPortal(
-      <IconButton onClick={onClick} aria-label="next image">
-        <ArrowRight />
-      </IconButton>,
+      <button onClick={onClick}></button>,
       document.getElementById("button-right")
     )
   )
