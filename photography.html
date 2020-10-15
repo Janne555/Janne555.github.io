@@ -20,8 +20,8 @@
   <main>
     <section>
       <article>
-        <header>
-
+        <header class="y-offset">
+          hello
         </header>
         <picture class="article-picture">
           <source
@@ -29,8 +29,8 @@
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
           <img src="img/640-appletreeflower.webp" loading="lazy" />
         </picture>
-        <section>
-
+        <section class="y-offset">
+          some text
         </section>
         <footer>
 
@@ -43,8 +43,8 @@
 
     <section>
       <article>
-        <header>
-
+        <header class="y-offset">
+          hello
         </header>
         <picture class="article-picture">
           <source
@@ -52,8 +52,8 @@
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
           <img src="img/640-velvetflower.webp" loading="lazy" />
         </picture>
-        <section>
-
+        <section class="y-offset">
+          some text
         </section>
         <footer>
 
@@ -66,17 +66,16 @@
 
     <section>
       <article>
-        <header>
-
+        <header class="y-offset">
+          hello
         </header>
         <picture class="article-picture">
-          <source
-            srcset="img/640-amanita.webp 640w, img/1600-amanita.webp 1600w, img/1920-amanita.webp 1920w"
+          <source srcset="img/640-amanita.webp 640w, img/1600-amanita.webp 1600w, img/1920-amanita.webp 1920w"
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
           <img src="img/640-amanita.webp" loading="lazy" />
         </picture>
-        <section>
-
+        <section class="y-offset">
+          some text
         </section>
         <footer>
 
@@ -89,17 +88,16 @@
 
     <section>
       <article>
-        <header>
-
+        <header class="y-offset">
+          hello
         </header>
         <picture class="article-picture">
-          <source
-            srcset="img/640-snowapple.webp 640w, img/1600-snowapple.webp 1600w, img/1920-snowapple.webp 1920w"
+          <source srcset="img/640-snowapple.webp 640w, img/1600-snowapple.webp 1600w, img/1920-snowapple.webp 1920w"
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
           <img src="img/640-snowapple.webp" loading="lazy" />
         </picture>
-        <section>
-
+        <section class="y-offset">
+          some text
         </section>
         <footer>
 
@@ -127,7 +125,12 @@
     function handleIntersection(entries) {
       const intersectingEntry = entries.find(entry => entry.isIntersecting)
       if (!intersectingEntry) return
+
       elementInView = intersectingEntry.target
+      elementInView.querySelector(".background-image").classList.add("displayed")
+      elementInView.querySelector("header").classList.replace("y-offset", "jump-in")
+      elementInView.querySelector("section").classList.replace("y-offset", "jump-in")
+      elementInView.querySelector("section").classList.add("delayed")
 
       const img = elementInView.querySelector("img")
       if (supportsLazy && !img.complete) {
@@ -152,23 +155,15 @@
     }
 
     /**
-    * @param intersectingEntry {Element}
+    * @param element {Element}
     */
     function fadeOutSurroundingBackgroundImages(element) {
-      const prevSection = element.previousElementSibling
-      const nextSection = element.nextElementSibling
-      if (prevSection instanceof HTMLElement) {
-        const prevPicture = prevSection.querySelector(".background-image")
-        prevPicture.classList.replace("fadein", "fadeout")
-      }
-      if (nextSection instanceof HTMLElement) {
-        const prevPicture = nextSection.querySelector(".background-image")
-        prevPicture.classList.replace("fadein", "fadeout")
-      }
+      document.querySelector('.fadein')
+        .classList.replace('fadein', 'fadeout')
     }
 
     /**
-    * @param intersectingEntry {Element}
+    * @param element {Element}
     */
     function fadeInCurrentBackground(element) {
       const backgroundPicture = element.querySelector(".background-image")
@@ -181,7 +176,7 @@
     * capabilities. Set the next picture to be displayed and the browser should load it
     * while the current is being viewed
     *
-    * @param intersectingEntry {Element}
+    * @param element {Element}
     */
     function setNextToBeDisplayed(element) {
       const nextSection = element.nextElementSibling

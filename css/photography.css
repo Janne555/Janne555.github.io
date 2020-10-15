@@ -31,7 +31,7 @@ main > section {
 }
 
 article {
-  background-color: aqua;
+  background-color: rgba(255,255,255, .95);
   height: 50%;
   width: 50%;
   display: grid;
@@ -105,5 +105,25 @@ article > header {
 
   100% {
     opacity: 0;
+  }
+}
+
+.jump-in {
+  animation: jump-in .8s forwards cubic-bezier(0.18, 0.89, 0.32, 1);
+  transform: translateY(150vh);
+}
+
+.delayed {
+  animation-delay: .3s;
+}
+
+.y-offset {
+  transform: translateY(-150vh);
+  visibility: hidden;
+}
+
+@keyframes jump-in {
+  100% {
+    transform: translateY(0);
   }
 }
