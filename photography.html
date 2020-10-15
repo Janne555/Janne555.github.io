@@ -27,7 +27,7 @@
           <source
             srcset="img/640-appletreeflower.webp 640w, img/1600-appletreeflower.webp 1600w, img/1920-appletreeflower.webp 1920w"
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
-          <img src="img/640-appletreeflower.webp" loading="lazy" />
+          <img src="img/640-appletreeflower.webp" loading="lazy" decoding="async" />
         </picture>
         <section class="y-offset">
           some text
@@ -36,7 +36,7 @@
 
         </footer>
         <picture class="background-image displayed fadein">
-          <img src="img/1920-appletreeflower.webp" loading="lazy" />
+          <img src="img/1920-appletreeflower.webp" loading="lazy" decoding="async" />
         </picture>
       </article>
     </section>
@@ -50,7 +50,7 @@
           <source
             srcset="img/640-velvetflower.webp 640w, img/1600-velvetflower.webp 1600w, img/1920-velvetflower.webp 1920w"
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
-          <img src="img/640-velvetflower.webp" loading="lazy" />
+          <img src="img/640-velvetflower.webp" loading="lazy" decoding="async" />
         </picture>
         <section class="y-offset">
           some text
@@ -59,7 +59,7 @@
 
         </footer>
         <picture class="background-image displayed">
-          <img src="img/1920-velvetflower.webp" loading="lazy" />
+          <img src="img/1920-velvetflower.webp" loading="lazy" decoding="async" />
         </picture>
       </article>
     </section>
@@ -72,7 +72,7 @@
         <picture class="article-picture">
           <source srcset="img/640-amanita.webp 640w, img/1600-amanita.webp 1600w, img/1920-amanita.webp 1920w"
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
-          <img src="img/640-amanita.webp" loading="lazy" />
+          <img src="img/640-amanita.webp" loading="lazy" decoding="async" />
         </picture>
         <section class="y-offset">
           some text
@@ -81,7 +81,7 @@
 
         </footer>
         <picture class="background-image">
-          <img src="img/1920-amanita.webp" loading="lazy" />
+          <img src="img/1920-amanita.webp" loading="lazy" decoding="async" />
         </picture>
       </article>
     </section>
@@ -94,7 +94,7 @@
         <picture class="article-picture">
           <source srcset="img/640-snowapple.webp 640w, img/1600-snowapple.webp 1600w, img/1920-snowapple.webp 1920w"
             sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
-          <img src="img/640-snowapple.webp" loading="lazy" />
+          <img src="img/640-snowapple.webp" loading="lazy" decoding="async" />
         </picture>
         <section class="y-offset">
           some text
@@ -103,7 +103,7 @@
 
         </footer>
         <picture class="background-image">
-          <img src="img/1920-snowapple.webp" loading="lazy" />
+          <img src="img/1920-snowapple.webp" loading="lazy" decoding="async" />
         </picture>
       </article>
     </section>
@@ -127,10 +127,8 @@
       if (!intersectingEntry) return
 
       elementInView = intersectingEntry.target
-      elementInView.querySelector(".background-image").classList.add("displayed")
-      elementInView.querySelector("header").classList.replace("y-offset", "jump-in")
-      elementInView.querySelector("section").classList.replace("y-offset", "jump-in")
-      elementInView.querySelector("section").classList.add("delayed")
+
+      animateContent(elementInView)
 
       const img = elementInView.querySelector("img")
       if (supportsLazy && !img.complete) {
@@ -184,6 +182,28 @@
         const nextBackgroundPicture = nextSection.querySelector(".background-image")
         nextBackgroundPicture.classList.add("displayed")
       }
+    }
+
+    /**
+    * @param element {Element}
+    */
+    function animateContent(element) {
+      element.querySelector(".background-image").classList.add("displayed")
+      element.querySelector("header").classList.replace("y-offset", "jump-in")
+      element.querySelector("section").classList.replace("y-offset", "jump-in")
+      element.querySelector("section").classList.add("delayed")
+    }
+
+    /**
+     * Set the image on the next artile to load eagerly, so it is ready
+     * by the time the user scrolls to it
+     * @param element {Element}
+    */
+    function loadNextArticlePicture(element) {
+      element.nextElementSibling
+        .querySelector(".article-picture")
+        .querySelector("img")
+        .setAttribute("loading", "eager")
     }
   </script>
 </body>
