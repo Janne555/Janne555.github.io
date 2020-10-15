@@ -30,7 +30,7 @@
               sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
             <img src="img/640-foo.webp" loading="lazy" />
           </picture>
-          <picture class="background-image displayed">
+          <picture class="background-image displayed fadein">
             <img src="img/1920-appletreeflower.webp" loading="lazy" />
           </picture>
         </section>
@@ -81,33 +81,71 @@
   </main>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
+    const supportsLazy = 'loading' in HTMLImageElement.prototype
+    const observer = new IntersectionObserver(async (entries) => {
       const intersectingEntry = entries.find(entry => entry.isIntersecting)
       if (!intersectingEntry) return
-      Array
-        .from(document.querySelectorAll(".background-image"))
-        .forEach(element => {
-          if (element.classList.contains("fadein")) {
-            element.classList.replace("fadein", "fadeout")
+
+      const img = intersectingEntry.target.querySelector("img")
+      if (supportsLazy && !img.complete) {
+        await new Promise(resolve => {
+          function listen() {
+            img.removeEventListener("load", listen)
+            resolve()
           }
+          img.addEventListener("load", listen)
         })
-
-      const backgroundPicture = intersectingEntry.target.querySelector(".background-image")
-
-      backgroundPicture.classList.remove("fadeout")
-      backgroundPicture.classList.add("fadein")
-
-      const articles = Array.from(document.querySelectorAll("article"))
-      const articleIndex = articles.findIndex(article => article === intersectingEntry.target)
-      const nextArticle = articles[articleIndex + 1]
-      if (nextArticle) {
-        const nextBackgroundPicture = nextArticle.querySelector(".background-image")
-        nextBackgroundPicture.classList.add("displayed")
       }
+
+      fadeOutSurroundingBackgroundImages(intersectingEntry)
+
+      fadeInCurrentBackground(intersectingEntry)
+
+      setNextToBeDisplayed(intersectingEntry)
 
     }, { root: document.body, threshold: .8 })
 
-    document.querySelectorAll("article").forEach(article => observer.observe(article))
+    document.querySelectorAll("main > section").forEach(article => observer.observe(article))
+
+    /**
+    * @param intersectingEntry {IntersectionObserverEntry}
+    */
+    function fadeOutSurroundingBackgroundImages(intersectingEntry) {
+      const prevSection = intersectingEntry.target.previousElementSibling
+      const nextSection = intersectingEntry.target.nextElementSibling
+      if (prevSection instanceof HTMLElement) {
+        const prevPicture = prevSection.querySelector(".background-image")
+        prevPicture.classList.replace("fadein", "fadeout")
+      }
+      if (nextSection instanceof HTMLElement) {
+        const prevPicture = nextSection.querySelector(".background-image")
+        prevPicture.classList.replace("fadein", "fadeout")
+      }
+    }
+
+    /**
+    * @param intersectingEntry {IntersectionObserverEntry}
+    */
+    function fadeInCurrentBackground(intersectingEntry) {
+      const backgroundPicture = intersectingEntry.target.querySelector(".background-image")
+      backgroundPicture.classList.remove("fadeout")
+      backgroundPicture.classList.add("fadein")
+    }
+
+    /**
+    * The pictures are set to display: none to leverage the browser's lazy loading
+    * capabilities. Set the next picture to be displayed and the browser should load it
+    * while the current is being viewed
+    *
+    * @param intersectingEntry {IntersectionObserverEntry}
+    */
+    function setNextToBeDisplayed(intersectingEntry) {
+      const nextSection = intersectingEntry.target.nextElementSibling
+      if (nextSection instanceof HTMLElement) {
+        const nextBackgroundPicture = nextSection.querySelector(".background-image")
+        nextBackgroundPicture.classList.add("displayed")
+      }
+    }
   </script>
 </body>
 
