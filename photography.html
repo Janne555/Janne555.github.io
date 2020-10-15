@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/normalize.css?ver=11" />
   <link rel="stylesheet" href="css/main.css?ver=11" />
-  <link rel="stylesheet" href="css/home.css?ver=11" />
+  <link rel="stylesheet" href="css/photography.css?ver=11" />
   <script type="module" src="js/index.js?ver=11"></script>
 </head>
 
@@ -18,12 +18,100 @@
     </nav-content>
   </nav>
   <main>
-    <article>
-      <header></header>
-      <section></section>
-      <footer></footer>
-    </article>
+    <section>
+      <article data-bg-img-id="appletreeflower">
+        <header></header>
+        <section>
+          <picture class="article-picture">
+            <source srcset="img/640-foo.webp 640w, img/1600-foo.webp 1600w, img/1920-foo.webp 1920w"
+              sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
+            <source
+              srcset="img/640-portrait-foo.webp 640w, img/1600-portrait-foo.webp 1600w, img/1920-portrait-foo.webp 1920w"
+              sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
+            <img src="img/640-foo.webp" loading="lazy" />
+          </picture>
+          <picture class="background-image">
+            <img id="appletreeflower" src="img/1920-appletreeflower.webp" loading="lazy" />
+          </picture>
+        </section>
+        <footer></footer>
+      </article>
+    </section>
+
+    <section>
+      <article data-bg-img-id="velvetflower">
+        <header></header>
+        <section>
+          <picture class="article-picture">
+            <source srcset="img/640-portrait-foo.webp" sizes="(max-width: 639px)" />
+            <source srcset="img/640-foo.webp" sizes="(min-width: 640px)" />
+            <img src="img/640-foo.webp" loading="lazy" />
+          </picture>
+          <picture>
+            <img id="velvetflower" src="img/1920-velvetflower.webp" loading="lazy" />
+          </picture>
+        </section>
+        <footer></footer>
+      </article>
+    </section>
+
+    <section>
+      <article data-bg-img-id="amanita">
+        <header></header>
+        <section></section>
+        <footer></footer>
+      </article>
+    </section>
+
+    <section>
+      <article data-bg-img-id="snowapple">
+        <header></header>
+        <section></section>
+        <footer></footer>
+      </article>
+    </section>
   </main>
+
+  <div id="background-images" class="background-images">
+    <picture>
+      <img id="appletreeflower" src="img/1920-appletreeflower.webp" loading="lazy" />
+    </picture>
+    <picture>
+      <img id="velvetflower" src="img/1920-velvetflower.webp" loading="lazy" />
+    </picture>
+    <picture>
+      <img id="amanita" src="img/1920-amanita.webp" loading="lazy" />
+    </picture>
+    <picture>
+      <img id="snowapple" src="img/1920-snowapple.webp" loading="lazy" />
+    </picture>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      const intersectingEntry = entries.find(entry => entry.isIntersecting)
+      if (!intersectingEntry) return
+      const imgId = intersectingEntry.target.getAttribute("data-bg-img-id")
+      const bgImg = document.getElementById(imgId)
+
+      if (!bgImg) return
+      Array
+        .from(document.getElementById("background-images").childNodes)
+        .forEach(child => {
+          if (child instanceof HTMLElement) {
+            if (child.classList.contains("fadein")) {
+              child.classList.replace("fadein", "fadeout")
+            }
+          }
+        })
+
+      bgImg.classList.remove("fadeout")
+      bgImg.classList.add("fadein")
+
+    }, { root: document.body, threshold: .8 })
+
+    document.querySelectorAll("article").forEach(article => observer.observe(article))
+  </script>
 </body>
 
 </html>

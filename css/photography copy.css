@@ -1,0 +1,151 @@
+body {
+  height: calc(var(--vh, 1vh) * 100);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: row;
+}
+
+.background {
+  display: none;
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(1em, auto) minmax(auto, 650px) minmax(1em, auto);
+  grid-auto-rows: 100%;
+  grid-auto-flow: row;
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-padding: 1em;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.article-wrapper {
+  overflow: hidden;
+  display: grid;
+  grid-column: 2;
+  grid-template-rows: minmax(1em, auto) minmax(auto, max-content) minmax(1em, auto);
+  height: 100%;
+  scroll-snap-align: center;
+}
+
+article {
+  height: 100%;
+  grid-row: 2;
+  justify-content: center;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.9);
+  align-self: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+article>* {
+  margin: 0 1em;
+}
+
+picture {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+.divider {
+  height: 1em;
+}
+
+article header {
+  margin-top: 1em;
+}
+
+header {
+  text-align: center;
+  order: -1;
+}
+
+picture {
+  height: 100%;
+  overflow: hidden;
+}
+
+.background {
+  display: initial;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+footer {
+  height: 1px;
+}
+
+.button-left, .button-right {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    height: calc(var(--vh, 1vh) * 100 - 3em);
+    grid-auto-columns: 100%;
+    grid-template-columns: initial;
+    grid-template-rows: 100%;
+    grid-auto-rows: initial;
+    grid-auto-flow: column;
+    overflow: hidden;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    align-items: center;
+  }
+  .article-wrapper {
+    display: initial;
+    grid-column: initial;
+    max-width: calc(100% - 10em);
+    max-height: calc(100% - 10em);
+  }
+  .article-wrapper:first-of-type {
+    justify-self: center;
+  }
+
+  .button-left, .button-right {
+    top: 50%;
+    position: absolute;
+    display: initial;
+    align-self: center;
+    background: rgb(255,255,255);
+    border-radius: 100%;
+  }  
+
+  .button-left {
+    left: 1em;
+  }
+
+  .button-right {
+    right: 1em;
+  }
+
+  picture {
+    max-width: 100%;
+    align-self: center;
+    justify-self: center;
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
