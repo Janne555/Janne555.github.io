@@ -19,7 +19,7 @@
   </nav>
   <main>
     <section>
-      <article data-bg-img-id="appletreeflower">
+      <article>
         <header></header>
         <section>
           <picture class="article-picture">
@@ -30,8 +30,8 @@
               sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
             <img src="img/640-foo.webp" loading="lazy" />
           </picture>
-          <picture class="background-image">
-            <img id="appletreeflower" src="img/1920-appletreeflower.webp" loading="lazy" />
+          <picture class="background-image displayed">
+            <img src="img/1920-appletreeflower.webp" loading="lazy" />
           </picture>
         </section>
         <footer></footer>
@@ -39,7 +39,7 @@
     </section>
 
     <section>
-      <article data-bg-img-id="velvetflower">
+      <article>
         <header></header>
         <section>
           <picture class="article-picture">
@@ -47,8 +47,8 @@
             <source srcset="img/640-foo.webp" sizes="(min-width: 640px)" />
             <img src="img/640-foo.webp" loading="lazy" />
           </picture>
-          <picture>
-            <img id="velvetflower" src="img/1920-velvetflower.webp" loading="lazy" />
+          <picture class="background-image displayed">
+            <img src="img/1920-velvetflower.webp" loading="lazy" />
           </picture>
         </section>
         <footer></footer>
@@ -56,57 +56,54 @@
     </section>
 
     <section>
-      <article data-bg-img-id="amanita">
+      <article>
         <header></header>
-        <section></section>
+        <section>
+          <picture class="background-image">
+            <img src="img/1920-amanita.webp" loading="lazy" />
+          </picture>
+        </section>
         <footer></footer>
       </article>
     </section>
 
     <section>
-      <article data-bg-img-id="snowapple">
+      <article>
         <header></header>
-        <section></section>
+        <section>
+          <picture class="background-image">
+            <img src="img/1920-snowapple.webp" loading="lazy" />
+          </picture>
+        </section>
         <footer></footer>
       </article>
     </section>
   </main>
 
-  <div id="background-images" class="background-images">
-    <picture>
-      <img id="appletreeflower" src="img/1920-appletreeflower.webp" loading="lazy" />
-    </picture>
-    <picture>
-      <img id="velvetflower" src="img/1920-velvetflower.webp" loading="lazy" />
-    </picture>
-    <picture>
-      <img id="amanita" src="img/1920-amanita.webp" loading="lazy" />
-    </picture>
-    <picture>
-      <img id="snowapple" src="img/1920-snowapple.webp" loading="lazy" />
-    </picture>
-  </div>
-
   <script>
     const observer = new IntersectionObserver((entries) => {
       const intersectingEntry = entries.find(entry => entry.isIntersecting)
       if (!intersectingEntry) return
-      const imgId = intersectingEntry.target.getAttribute("data-bg-img-id")
-      const bgImg = document.getElementById(imgId)
-
-      if (!bgImg) return
       Array
-        .from(document.getElementById("background-images").childNodes)
-        .forEach(child => {
-          if (child instanceof HTMLElement) {
-            if (child.classList.contains("fadein")) {
-              child.classList.replace("fadein", "fadeout")
-            }
+        .from(document.querySelectorAll(".background-image"))
+        .forEach(element => {
+          if (element.classList.contains("fadein")) {
+            element.classList.replace("fadein", "fadeout")
           }
         })
 
-      bgImg.classList.remove("fadeout")
-      bgImg.classList.add("fadein")
+      const backgroundPicture = intersectingEntry.target.querySelector(".background-image")
+
+      backgroundPicture.classList.remove("fadeout")
+      backgroundPicture.classList.add("fadein")
+
+      const articles = Array.from(document.querySelectorAll("article"))
+      const articleIndex = articles.findIndex(article => article === intersectingEntry.target)
+      const nextArticle = articles[articleIndex + 1]
+      if (nextArticle) {
+        const nextBackgroundPicture = nextArticle.querySelector(".background-image")
+        nextBackgroundPicture.classList.add("displayed")
+      }
 
     }, { root: document.body, threshold: .8 })
 
