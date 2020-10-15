@@ -13,106 +13,150 @@
 
 <body>
   <nav>
-    <nav-content currentpage="home">
+    <nav-content currentpage="photography">
       <div class="loading-bar"></div>
     </nav-content>
   </nav>
   <main>
     <section>
       <article>
-        <header></header>
+        <header>
+
+        </header>
+        <picture class="article-picture">
+          <source
+            srcset="img/640-appletreeflower.webp 640w, img/1600-appletreeflower.webp 1600w, img/1920-appletreeflower.webp 1920w"
+            sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
+          <img src="img/640-appletreeflower.webp" loading="lazy" />
+        </picture>
         <section>
-          <picture class="article-picture">
-            <source srcset="img/640-foo.webp 640w, img/1600-foo.webp 1600w, img/1920-foo.webp 1920w"
-              sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
-            <source
-              srcset="img/640-portrait-foo.webp 640w, img/1600-portrait-foo.webp 1600w, img/1920-portrait-foo.webp 1920w"
-              sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
-            <img src="img/640-foo.webp" loading="lazy" />
-          </picture>
-          <picture class="background-image displayed fadein">
-            <img src="img/1920-appletreeflower.webp" loading="lazy" />
-          </picture>
+
         </section>
-        <footer></footer>
+        <footer>
+
+        </footer>
+        <picture class="background-image displayed fadein">
+          <img src="img/1920-appletreeflower.webp" loading="lazy" />
+        </picture>
       </article>
     </section>
 
     <section>
       <article>
-        <header></header>
+        <header>
+
+        </header>
+        <picture class="article-picture">
+          <source
+            srcset="img/640-velvetflower.webp 640w, img/1600-velvetflower.webp 1600w, img/1920-velvetflower.webp 1920w"
+            sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
+          <img src="img/640-velvetflower.webp" loading="lazy" />
+        </picture>
         <section>
-          <picture class="article-picture">
-            <source srcset="img/640-portrait-foo.webp" sizes="(max-width: 639px)" />
-            <source srcset="img/640-foo.webp" sizes="(min-width: 640px)" />
-            <img src="img/640-foo.webp" loading="lazy" />
-          </picture>
-          <picture class="background-image displayed">
-            <img src="img/1920-velvetflower.webp" loading="lazy" />
-          </picture>
+
         </section>
-        <footer></footer>
+        <footer>
+
+        </footer>
+        <picture class="background-image displayed">
+          <img src="img/1920-velvetflower.webp" loading="lazy" />
+        </picture>
       </article>
     </section>
 
     <section>
       <article>
-        <header></header>
+        <header>
+
+        </header>
+        <picture class="article-picture">
+          <source
+            srcset="img/640-amanita.webp 640w, img/1600-amanita.webp 1600w, img/1920-amanita.webp 1920w"
+            sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
+          <img src="img/640-amanita.webp" loading="lazy" />
+        </picture>
         <section>
-          <picture class="background-image">
-            <img src="img/1920-amanita.webp" loading="lazy" />
-          </picture>
+
         </section>
-        <footer></footer>
+        <footer>
+
+        </footer>
+        <picture class="background-image">
+          <img src="img/1920-amanita.webp" loading="lazy" />
+        </picture>
       </article>
     </section>
 
     <section>
       <article>
-        <header></header>
+        <header>
+
+        </header>
+        <picture class="article-picture">
+          <source
+            srcset="img/640-snowapple.webp 640w, img/1600-snowapple.webp 1600w, img/1920-snowapple.webp 1920w"
+            sizes="(max-width: 640px) 640px, (max-width: 1600px) 1600px, 1920px" />
+          <img src="img/640-snowapple.webp" loading="lazy" />
+        </picture>
         <section>
-          <picture class="background-image">
-            <img src="img/1920-snowapple.webp" loading="lazy" />
-          </picture>
+
         </section>
-        <footer></footer>
+        <footer>
+
+        </footer>
+        <picture class="background-image">
+          <img src="img/1920-snowapple.webp" loading="lazy" />
+        </picture>
       </article>
     </section>
   </main>
 
   <script>
+    let elementInView = undefined
     const supportsLazy = 'loading' in HTMLImageElement.prototype
-    const observer = new IntersectionObserver(async (entries) => {
-      const intersectingEntry = entries.find(entry => entry.isIntersecting)
-      if (!intersectingEntry) return
-
-      const img = intersectingEntry.target.querySelector("img")
-      if (supportsLazy && !img.complete) {
-        await new Promise(resolve => {
-          function listen() {
-            img.removeEventListener("load", listen)
-            resolve()
-          }
-          img.addEventListener("load", listen)
-        })
-      }
-
-      fadeOutSurroundingBackgroundImages(intersectingEntry)
-
-      fadeInCurrentBackground(intersectingEntry)
-
-      setNextToBeDisplayed(intersectingEntry)
-
-    }, { root: document.body, threshold: .8 })
+    const observer = new IntersectionObserver(
+      handleIntersection,
+      { root: document.body, threshold: .8 }
+    )
 
     document.querySelectorAll("main > section").forEach(article => observer.observe(article))
 
     /**
-    * @param intersectingEntry {IntersectionObserverEntry}
+    * @param entries {IntersectionObserverEntry[]}
     */
-    function fadeOutSurroundingBackgroundImages(intersectingEntry) {
-      const prevSection = intersectingEntry.target.previousElementSibling
-      const nextSection = intersectingEntry.target.nextElementSibling
+    function handleIntersection(entries) {
+      const intersectingEntry = entries.find(entry => entry.isIntersecting)
+      if (!intersectingEntry) return
+      elementInView = intersectingEntry.target
+
+      const img = elementInView.querySelector("img")
+      if (supportsLazy && !img.complete) {
+        img.addEventListener("load", handleLoad)
+      } else {
+        handleBackgroundChange()
+      }
+    }
+
+    /**
+    * @this {HTMLImageElement}
+    */
+    function handleLoad() {
+      this.removeEventListener("load", handleBackgroundChange)
+      handleBackgroundChange()
+    }
+
+    function handleBackgroundChange() {
+      fadeOutSurroundingBackgroundImages(elementInView)
+      fadeInCurrentBackground(elementInView)
+      setNextToBeDisplayed(elementInView)
+    }
+
+    /**
+    * @param intersectingEntry {Element}
+    */
+    function fadeOutSurroundingBackgroundImages(element) {
+      const prevSection = element.previousElementSibling
+      const nextSection = element.nextElementSibling
       if (prevSection instanceof HTMLElement) {
         const prevPicture = prevSection.querySelector(".background-image")
         prevPicture.classList.replace("fadein", "fadeout")
@@ -124,10 +168,10 @@
     }
 
     /**
-    * @param intersectingEntry {IntersectionObserverEntry}
+    * @param intersectingEntry {Element}
     */
-    function fadeInCurrentBackground(intersectingEntry) {
-      const backgroundPicture = intersectingEntry.target.querySelector(".background-image")
+    function fadeInCurrentBackground(element) {
+      const backgroundPicture = element.querySelector(".background-image")
       backgroundPicture.classList.remove("fadeout")
       backgroundPicture.classList.add("fadein")
     }
@@ -137,10 +181,10 @@
     * capabilities. Set the next picture to be displayed and the browser should load it
     * while the current is being viewed
     *
-    * @param intersectingEntry {IntersectionObserverEntry}
+    * @param intersectingEntry {Element}
     */
-    function setNextToBeDisplayed(intersectingEntry) {
-      const nextSection = intersectingEntry.target.nextElementSibling
+    function setNextToBeDisplayed(element) {
+      const nextSection = element.nextElementSibling
       if (nextSection instanceof HTMLElement) {
         const nextBackgroundPicture = nextSection.querySelector(".background-image")
         nextBackgroundPicture.classList.add("displayed")
