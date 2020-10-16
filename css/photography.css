@@ -1,3 +1,8 @@
+:root {
+  --transition-delay: .8s;
+  --black: rgba(12, 12, 12, 1);
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -7,6 +12,15 @@ body {
   background-size: cover;
   scroll-snap-type: y mandatory;
   background-color: grey;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  text-align: center;
 }
 
 nav, main > section {
@@ -42,21 +56,98 @@ article {
 
 article > header {
   grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header::before, header::after {
+  content: '';
+  box-sizing: border-box;
+  height: 2px;
+  flex: 1;
+  background-color: var(--black);
+  clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%);
+  transition: clip-path 1s ease-in-out;
+  transition-delay: var(--transition-delay);
+}
+
+header::before {
+  clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%);
+}
+
+header::after {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+
+header.jump-in::before {
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+header.jump-in::after {
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+h3 {
+  margin: 0 1em;
 }
 
 .article-picture {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
   overflow: hidden;
+}
+
+.article-picture > * {
+  grid-row: 1;
+  grid-column: 1;
 }
 
 .article-picture > img {
   width: inherit;
   height: inherit;
   object-fit: cover;
+}
+
+.article-picture::before, .article-picture::after {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: center;
+  justify-self: center;
+  z-index: 10;
+  content: '';
+  border: 1px solid black;
+  border-radius: 100%;
+  height: 1em;
+  width: 1em;
+  display: none;
+  animation-play-state: paused;
+  animation: scale-disappear 1s infinite;
+  transition: border .5s ease-in-out;
+}
+
+.image-loading::before, .image-loading::after {
+  display: initial;
+  animation-play-state: running;
+}
+
+.article-picture::after {
+  animation-delay: -.4s;
+}
+
+@keyframes scale-disappear {
+  0% {
+    transform: scale(.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
 }
 
 .background-image {
@@ -95,13 +186,13 @@ article > header {
   }
 
   100% {
-    opacity: 1;
+    opacity: initial;
   }
 }
 
 @keyframes fadeout {
   0% {
-    opacity: 1;
+    opacity: initial;
   }
 
   100% {
@@ -110,7 +201,7 @@ article > header {
 }
 
 .jump-in {
-  animation: jump-in .8s forwards cubic-bezier(0.18, 0.89, 0.32, 1);
+  animation: jump-in var(--transition-delay) forwards cubic-bezier(0.18, 0.89, 0.32, 1);
   transform: translateY(150vh);
 }
 
