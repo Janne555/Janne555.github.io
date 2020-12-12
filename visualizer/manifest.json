@@ -1,0 +1,6 @@
+{
+  "name": "Visualizer",
+  "short_name": "Visualizer",
+  "start_url": ".",
+  "display": "standalone"
+}
